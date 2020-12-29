@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="profile-container-template">
+            <h1>Chat App</h1>
+            <p>This is chatApp amde with using socket io And This side will show user name And profile. And Active User , how any user are online!! </p>
+        </div>
+        <div class="profile-container ">
+            <div class="my-profile">
+                <div class="profile-img">
+                    <img src="https://img.icons8.com/clouds/100/000000/user-male.png"/>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name" id="name">name</div>
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="active-user">
+                <div class="active-user-no" id="active-user-no">Active User</div>
+                <div class="active-user-status" id="active-user-status">
+                    <!-- <div class="name">Steve</div>
+                    <div class="name">Steve</div>
+                    <div class="name">Steve</div> -->
+                </div>
+            </div>
+        </div>
+        <div class="chat-box-message">
+            <div class="chat-box-content main">
+                <div class="join-chat-form ">
+                    <input type="text" id="chat-user" placeholder="Name">
+                    <div class="join-chat" id="join-btn">JOIN</div>
+                </div>
+                <div class="chat-message-main hide" id="chatBox">
+                    <!-- <div class="chat right">
+                        <div class="chat-name">Steve</div>
+                        <div class="chat-message">hiii stevethis side</div>
+                        <div class="time-of-text">10:38</div>
+                        <div class="options">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="chat join">steve joined the chat</div>
+                    <div class="chat left">
+                        <div class="chat-name">Tony</div>
+                        <div class="chat-message">hi tony this side</div>
+                        <div class="time-of-text">10:39</div>
+                        <div class="options">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="deleted-chat-showcase left">
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+                        This message was delelted</div>
+                    <div class="chat leave">Tony left the chat</div> -->
+                </div>
+                <div class="chat-input hide">
+                    <input type="text" id="chat-input" placeholder="Message">
+                    <div class="send"><i id="send" class="fas fa-paper-plane"></i></div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="time-and-other-stuff">
+            <div class="whiteboard-template">
+                <h1>Hey Guys,</h1>
+                <p>This side show something intersting with small white board , when You are not want to type to just draw u all can Scribble also here!!!</p>
+                <button class="whiteboard-template-btn nosee">Use Me</button>
+            </div>
+            <div class="whiteboard">
+                <div class="optionss">
+                    <div class="tool-img active-tool" id="pencil">
+                        <img src="./images/Black_Pencil.svg" alt="">
+                    </div>
+                    <div class="tool-img" id="eraser">
+                        <img src="./images/Eraser.svg" alt="">
+                    </div>
+                    <div class="tool-img" id="undo">
+                        <img src="./images/Undo.svg" alt="">
+                    </div>
+                    <div class="tool-img" id="redo">
+                        <img src="./images/Redo.svg" alt="">
+                    </div>
+                    <div class="tool-img" id="close-whiteboard">
+                        <img src="./images/CloseButton.svg" alt="">
+                    </div>
+                </div>
+                <div class="drawing-area">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $('#chat-input').emojioneArea({
+            pickerPosition:'left'
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script>
+        const socket = io.connect('http://localhost:3000');
+    </script>
+    <script src="./scrpit.js"></script>
+    <script src="./socket.js"></script>
+</body>
+</html>
