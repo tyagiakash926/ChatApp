@@ -9,12 +9,11 @@ let users = [];
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
-
+let profile_image_array = ["./images/pexels-anna-shvets-3771639.jpg" , "./images/pexels-ayaka-kato-2860897.jpg" , "./images/pexels-maxime-francis-2246476.jpg" , "./images/pexels-nick-bondarev-4348099.jpg", "./images/pexels-sumit-kapoor-718261.jpg","./images/pexels-wallace-chuck-4580470.jpg"];
 io.on('connection', function(socket){
     console.log(`${socket.id} connected`);
     socket.on("join-chat",function(name){
-        users.push({   id:socket.id ,  name});
-        // console.log(users);
+        users.push({   id:socket.id ,  name , image:profile_image_array[Math.floor(Math.random()*profile_image_array.length)]});
         socket.broadcast.emit("user-joined" , {name,users});
         socket.emit("update-active-list-user",{name,users});
         
@@ -28,28 +27,28 @@ io.on('connection', function(socket){
     //     socket.broadcast.emit("get-active-list",AllNames);
     // });
     socket.on("chat-send" , function(userObj){
-        socket.broadcast.emit("receive-chat" , userObj);
+        let User = userObj.User;
+        let selcted = users.filter( function(userObj){
+            return userObj.name == User;
+        });
+        let image = selcted[0].image;
+        socket.broadcast.emit("receive-chat" , {userObj:userObj , audio: './public/images/bloom.mp3' , image:image});
     })
-
     socket.on("chat-deleted" , function(d){
-        console.log("app.js",d);
+        console.log(d);
         socket.broadcast.emit("deleted-chat-message" , d);
     })
 
     socket.on("mousedown" , function(point){
-        // console.log("")
         socket.broadcast.emit("md" , point);
     })
     socket.on("mousemove" , function(point){
-        // console.log("")
         socket.broadcast.emit("mm" , point);
     })
     socket.on("undo" , function(points){
-        // console.log(points);
         socket.broadcast.emit("undoPoint" , points);
     })
     socket.on("redo" , function(lineToBeDrawn){
-        // console.log("")
         socket.broadcast.emit("redoPoint" , lineToBeDrawn);
     })
 
@@ -58,10 +57,7 @@ io.on('connection', function(socket){
         let user = users.filter( function(userObj){
             return userObj.id == socket.id;
         });
-        
-        // [ {id:1234124124 , name:"asidhfaus"} ]
         console.log(user[0]);
-
         if(user){
             socket.broadcast.emit("leave" , user[0].name );
         }

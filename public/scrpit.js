@@ -1,25 +1,25 @@
-let chat = document.querySelector("#chat-input");
-let chatUser = document.querySelector("#chat-user");
-let chatInputDiv = document.querySelector(".chat-input");
-let send = document.querySelector("#send");
-let chatBox = document.querySelector("#chatBox");
-let bChatBox = document.querySelector(".chat-box-message")
-let emojiInput = document.querySelector(".emojionearea-editor");
-let joinChat = document.querySelector("#join-btn");
-let joinFrom = document.querySelector(".join-chat-form");
+// let chat = document.querySelector("#chat-input");
+// let chatUser = document.querySelector("#chat-user");
+// let chatInputDiv = document.querySelector(".chat-input");
+// let send = document.querySelector("#send");
+// let chatBox = document.querySelector("#chatBox");
+// let bChatBox = document.querySelector(".chat-box-message")
+// let emojiInput = document.querySelector(".emojionearea-editor");
+// let joinChat = document.querySelector("#join-btn");
+// let joinFrom = document.querySelector(".join-chat-form");
 
 
-// now profile work!!! Active user
-var nameofUser = document.querySelector("#name");
-let activeUser = document.querySelector("#active-user-status");
-let SactiveUser = document.querySelector(".active-user-no");
-let BactiveUser = document.querySelector(".active-user");
+// // now profile work!!! Active user
+// var nameofUser = document.querySelector("#name");
+// let activeUser = document.querySelector("#active-user-status");
+// let SactiveUser = document.querySelector(".active-user-no");
+// let BactiveUser = document.querySelector(".active-user");
 
-// now work on profile page
+// // now work on profile page
 
-var ProfilePage = document.querySelector(".profile-container");
-var ChatBoxContent = document.querySelector(".chat-box-content");
-var templateProfile = document.querySelector(".profile-container-template");
+// var ProfilePage = document.querySelector(".profile-container");
+// var ChatBoxContent = document.querySelector(".chat-box-content");
+// var templateProfile = document.querySelector(".profile-container-template");
 var whiteboardTemplate = document.querySelector(".whiteboard-template");
 var whiteboardTemplateBtn = document.querySelector(".whiteboard-template-btn");
 
@@ -28,20 +28,11 @@ var whiteboardTemplateBtn = document.querySelector(".whiteboard-template-btn");
 let closeWhiteBoard = document.getElementById("close-whiteboard");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d"); // contex object which have functions to draw on canvas
-canvas.height = 510.56;
-canvas.width = 256;
+canvas.height = 488;
+canvas.width = 245;
 ctx.lineWidth = 5;
 ctx.fillStyle = 'black';
-//x-axis , y-axis , length , breadth
-// ctx.fillRect(10, 10, 150, 100);
-//draw a line
-// ctx.strokeStyle = "red";
-// ctx.lineWidth = 5;
-// ctx.beginPath();
-// ctx.moveTo(0,0);
-// ctx.lineTo(1,10);
-// ctx.lineTo(50,50);
-// ctx.stroke();
+ctx.strokeStyle = 'white';
 let points = [];
 let redoPoints = [];
 let isPenDown = false;
@@ -101,6 +92,7 @@ let pencil = document.querySelector("#pencil");
 let eraser = document.querySelector("#eraser");
 closeWhiteBoard.addEventListener("click",function(){
     whiteboardTemplate.classList.remove("active");
+    whiteboardTemplate.classList.remove("hide");
 })
 undo.addEventListener("click", function () {
     // console.log(points);
@@ -168,80 +160,137 @@ eraser.addEventListener("click", function () {
     eraser.classList.add("active-tool");
     pencil.classList.remove("active-tool");
     ctx.lineWidth = "10";
-    ctx.strokeStyle = "#c39aeb";
+    ctx.strokeStyle = "#1C1F25";
 });
   
 
 
 
-/////////////////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////////////////
 
 function updateActiveUser(ALLUSERS){
     // console.log(ALLUSERS);
-    document.getElementById("active-user-status").remove(); 
+    document.getElementById("lower-section-of-profile").remove(); 
     addactive(ALLUSERS);
 }
 
 whiteboardTemplateBtn.addEventListener("click",function(){
     whiteboardTemplate.classList.add("active");
+    whiteboardTemplate.classList.add("hide");
 })
 // let name = prompt("Enter Your Name");
-let User;
-joinChat.addEventListener("click",function(){
-    User = chatUser.value;
-    if(User){
-        nameofUser.innerHTML = User;
-        ProfilePage.classList.add("active");
-        ChatBoxContent.classList.remove("main");
-        ChatBoxContent.classList.add("active");
-        whiteboardTemplateBtn.classList.remove("nosee");
-        templateProfile.classList.add("active");
-        socket.emit("join-chat" , User);
+// joinChat.addEventListener("click",function(){
+//     User = chatUser.value;
+//     if(User){
+//         nameofUser.innerHTML = User;
+//         ProfilePage.classList.add("active");
+//         ChatBoxContent.classList.remove("main");
+//         ChatBoxContent.classList.add("active");
+//         whiteboardTemplateBtn.classList.remove("nosee");
+//         templateProfile.classList.add("active");
+//         socket.emit("join-chat" , User);
         
-        // if(users){
-        //     console.log("intial",users);
-        //     let AllNames = [];
-        //     let any = users.filter(function(userObj){
-        //         AllNames.push(userObj.name);
-        //     })
-        //     console.log(AllNames);
-        //     document.getElementById("active-user-status").remove(); 
-        //     addactive(AllNames);
-        // }
-        joinFrom.classList.add("hide");
-        chatBox.classList.remove("hide");
-        chatInputDiv.classList.remove("hide");
+//         // if(users){
+//         //     console.log("intial",users);
+//         //     let AllNames = [];
+//         //     let any = users.filter(function(userObj){
+//         //         AllNames.push(userObj.name);
+//         //     })
+//         //     console.log(AllNames);
+//         //     document.getElementById("active-user-status").remove(); 
+//         //     addactive(AllNames);
+//         // }
+//         joinFrom.classList.add("hide");
+//         chatBox.classList.remove("hide");
+//         chatInputDiv.classList.remove("hide");
+//     }
+// })
+
+// send.addEventListener("click",function(){
+//     let chatMessage = chat.value;
+//     var d = new Date(); // for now
+//     var hour = d.getHours(); // => 9
+//     var min = d.getMinutes(); // =>  30
+//     var sec = d.getSeconds(); // => 51
+//     var string = hour +":"+min+":"+sec;
+//     if(chatMessage){
+//         socket.emit("chat-send" , {User , chatMessage , string} );
+//         addChat("right" , {User , chatMessage , string});
+//         chatBox.scrollTop  =  chatBox.scrollHeight;
+//         chatMessage.value = "";
+//         // console.log(document.querySelector(".emojionearea-editor").textContent); 
+//         document.querySelector(".emojionearea-editor").textContent = "";
+//     }
+// })
+let profile_image_array = ["./images/pexels-anna-shvets-3771639.jpg" , "./images/pexels-ayaka-kato-2860897.jpg" , "./images/pexels-maxime-francis-2246476.jpg" , "./images/pexels-nick-bondarev-4348099.jpg", "./images/pexels-sumit-kapoor-718261.jpg","./images/pexels-wallace-chuck-4580470.jpg"];
+let color = ["#1abc9c" , "#f1c40f" ,"#9b59b6" ,"#81ecec" ,"#e84393" ,"#30336b"];
+function addactive(ALLUSERS){
+    let activeStatus = document.createElement("div");
+    activeStatus.classList.add("lower-section-of-profile");
+    activeStatus.setAttribute("id","lower-section-of-profile");
+    for(let i=0;i<ALLUSERS.length;i++){
+        let user_name_profile = document.createElement("div");
+        user_name_profile.classList.add("user-name-profile");
+        user_name_profile.setAttribute("id",`${ALLUSERS[i].name}`);
+        let profile_image = document.createElement("div");
+        profile_image.classList.add("profile-image");
+        profile_image.innerHTML = `<img src="${ALLUSERS[i].image}" alt="">`
+        let user_name = document.createElement("div");
+        user_name.classList.add("user-name");
+        let h_1 = document.createElement("h1");
+        h_1.innerHTML = ALLUSERS[i].name;
+        let p = document.createElement("p");
+        p.innerHTML = `no Data breach more secure`;
+        user_name.append(h_1);
+        user_name.append(p);
+        user_name_profile.append(profile_image);
+        user_name_profile.append(user_name);
+        activeStatus.append(user_name_profile);
+    }
+    container_b_1_2.append(activeStatus);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+let join_chat_input = document.querySelector(".name-for-join-chat");
+let join_chat_button = document.querySelector(".a-heading-4-2");
+let container_a = document.querySelector(".container-a");
+let container_b = document.querySelector(".container-b");
+let chatBox = document.querySelector("#chatBox");
+let chat_message = document.querySelector("#chat-input");
+let chat_message_send = document.querySelector("#send");
+let container_b_1_2 = document.querySelector(".container-b-1-2");
+let chat = document.querySelector("#chat-input");
+
+let User;
+join_chat_button.addEventListener("click",function(){
+    User = join_chat_input.value;
+    if(User){
+        whiteboardTemplateBtn.classList.remove("nosee");
+        container_a.classList.add("hide");
+        container_a.classList.add("active");
+        container_b.classList.remove("hide");
+        container_b.classList.add("active");
+        socket.emit("join-chat" , User);
     }
 })
-
-send.addEventListener("click",function(){
+chat_message_send.addEventListener("click",function(){
     let chatMessage = chat.value;
+    // console.log(chatMessage);
     var d = new Date(); // for now
     var hour = d.getHours(); // => 9
     var min = d.getMinutes(); // =>  30
     var sec = d.getSeconds(); // => 51
     var string = hour +":"+min+":"+sec;
     if(chatMessage){
-        socket.emit("chat-send" , {User , chatMessage , string} );
-        addChat("right" , {User , chatMessage , string});
+        socket.emit("chat-send" , {User, chatMessage , string} );
+        let imagelink = document.getElementById(User).firstElementChild.firstChild.src
+        let userObj = {User , chatMessage , string}
+        addChat("right" , {userObj:userObj , image:imagelink});
         chatBox.scrollTop  =  chatBox.scrollHeight;
         chatMessage.value = "";
-        // console.log(document.querySelector(".emojionearea-editor").textContent); 
+        // // console.log(document.querySelector(".emojionearea-editor").textContent); 
         document.querySelector(".emojionearea-editor").textContent = "";
     }
 })
-
-function addactive(ALLUSERS){
-    let activeStatus = document.createElement("div");
-    activeStatus.classList.add("active-user-status");
-    activeStatus.setAttribute("id","active-user-status");
-    for(let i=0;i<ALLUSERS.length;i++){
-        let joinDiv = document.createElement("div");
-        joinDiv.classList.add("name");
-        joinDiv.setAttribute("id",ALLUSERS[i]);
-        joinDiv.innerHTML = ALLUSERS[i];
-        activeStatus.append(joinDiv);
-    }
-    BactiveUser.append(activeStatus);
-}
-
