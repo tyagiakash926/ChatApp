@@ -1,11 +1,16 @@
 let express = require('express');
 let app = express();
+const cors = require('cors')
 let http = require('http').createServer(app);
-let io = require('socket.io')(http);
 
+app.use(cors())
 app.use(express.static('public'));
 let users = [];
 
+const http = require("http").createServer(app);
+const io = require('socket.io')(http,{cors:{
+    origin:"*",
+}});
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
