@@ -4,7 +4,6 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.static('public'));
 let users = [];
-
 const http = require("http").createServer(app);
 const io = require('socket.io')(http,{cors:{
     origin:"*",
@@ -62,12 +61,11 @@ io.on('connection', function(socket){
         });
         console.log(user[0]);
         if(user){
+            users = users.filter(function(userObj){
+                return userObj.id != socket.id;
+            })
             socket.broadcast.emit("leave" , user[0].name );
         }
-
-        users = users.filter(function(userObj){
-            return userObj.id != socket.id;
-        })
     })
 })
 let port = process.env.PORT || 3000;

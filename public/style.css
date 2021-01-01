@@ -430,6 +430,7 @@ body{
     justify-content: space-between;
 }
 .delete-icon{
+    margin-top: 3%;
     color: #6e6f72 ;
 }
 .time{
