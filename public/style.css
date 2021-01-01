@@ -180,6 +180,7 @@ body{
 }
 .a-heading-4-2:hover{
     transform: scale(0.95);
+    cursor: pointer;
 }
 .a-heading-4-3{
     height: 100%;
@@ -593,7 +594,7 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
     justify-content: center;
     align-items: center;
 }
-.whiteboard-template h1{
+/* .whiteboard-template h1{
     color: #FA5D7F;
     font-family: 'Courier New', Courier, monospace;
     font-size: 40px;
@@ -607,6 +608,32 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
     font-weight: 100;
     line-height: 30px;
     text-align: center;
+} */
+.whiteboard-template-1{
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+.whiteboard-template-1 img{
+    height: 55%;
+    width: 37%;
+}
+.whiteboard-template-1 h1{
+    font-family: 'Montserrat','sans-serif';
+    font-size:13px; 
+    color: #DADADB;
+    text-align: center;
+}
+.whiteboard-template-1 p{
+    font-family: 'Montserrat','sans-serif';
+    font-size: 10px;
+    color: #6A6C70;
+    margin-left: 10%;
+    text-align: center;
+    margin-left: -2%;
+    margin-top: 2%;
 }
 .whiteboard-template.active{
     transition: all 0.6s;
@@ -621,9 +648,10 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
     border-radius: 18px;
     color: white;
     transition: all 0.5s;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Montserrat','sans-serif';
     font-size: 16px;
     font-weight: bold;
+    margin-top: 2%;
 }
 .whiteboard-template-btn:hover{
     transform: scale(1.2);

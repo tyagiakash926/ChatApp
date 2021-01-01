@@ -32,7 +32,7 @@ canvas.height = 488;
 canvas.width = 245;
 ctx.lineWidth = 5;
 ctx.fillStyle = 'black';
-ctx.strokeStyle = 'white';
+ctx.strokeStyle = '#bdc3c7';
 let points = [];
 let redoPoints = [];
 let isPenDown = false;
@@ -76,7 +76,6 @@ canvas.addEventListener("mousemove", function(e){
         socket.emit("mousemove" , point);
     }
 });
-
 canvas.addEventListener("mouseup", function () {
     isPenDown = false;
     points.push(line);
@@ -153,7 +152,7 @@ pencil.addEventListener("click", function () {
     eraser.classList.remove("active-tool");
     pencil.classList.add("active-tool");
     ctx.lineWidth = "5";
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "#bdc3c7";
 });
 
 eraser.addEventListener("click", function () {

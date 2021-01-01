@@ -5,6 +5,7 @@ socket.on("user-joined", function (nameAndUsers) {
    joinDiv.classList.add("join");
    joinDiv.innerHTML = `${nameAndUsers.name} joined the chat`;
    chatBox.append(joinDiv);
+   chatBox.scrollTop  =  chatBox.scrollHeight;
    let AllNames = []
     let any = nameAndUsers.users.filter(function(userObj){
         AllNames.push(userObj);
@@ -60,6 +61,7 @@ socket.on("leave", function (name) {
    joinDiv.classList.add("leave");
    joinDiv.innerHTML = `${name} left the chat`;
    chatBox.append(joinDiv);
+   chatBox.scrollTop  =  chatBox.scrollHeight;
    removeactive(name);
   });
 
