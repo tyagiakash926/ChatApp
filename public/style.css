@@ -177,6 +177,8 @@ body{
     border-radius: 20px;
     margin-left: 15%;
     transition: all 0.5s;
+
+    
 }
 .a-heading-4-2:hover{
     transform: scale(0.95);
