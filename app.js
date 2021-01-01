@@ -61,11 +61,11 @@ io.on('connection', function(socket){
         });
         console.log(user[0]);
         if(user){
-            users = users.filter(function(userObj){
-                return userObj.id != socket.id;
-            })
             socket.broadcast.emit("leave" , user[0].name );
         }
+        users = users.filter(function(userObj){
+            return userObj.id != socket.id;
+        })
     })
 })
 let port = process.env.PORT || 3000;
