@@ -1,8 +1,6 @@
 let express = require('express');
 let app = express();
 const cors = require('cors')
-let http = require('http').createServer(app);
-
 app.use(cors())
 app.use(express.static('public'));
 let users = [];
