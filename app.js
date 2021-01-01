@@ -9,7 +9,7 @@ const io = require('socket.io')(http,{cors:{
     origin:"*",
 }});
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.redirect(__dirname + '/public/index.html');
 });
 let profile_image_array = ["./images/pexels-anna-shvets-3771639.jpg" , "./images/pexels-ayaka-kato-2860897.jpg" , "./images/pexels-maxime-francis-2246476.jpg" , "./images/pexels-nick-bondarev-4348099.jpg", "./images/pexels-sumit-kapoor-718261.jpg","./images/pexels-wallace-chuck-4580470.jpg"];
 io.on('connection', function(socket){
