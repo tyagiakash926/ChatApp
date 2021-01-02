@@ -1,25 +1,4 @@
-// let chat = document.querySelector("#chat-input");
-// let chatUser = document.querySelector("#chat-user");
-// let chatInputDiv = document.querySelector(".chat-input");
-// let send = document.querySelector("#send");
-// let chatBox = document.querySelector("#chatBox");
-// let bChatBox = document.querySelector(".chat-box-message")
-// let emojiInput = document.querySelector(".emojionearea-editor");
-// let joinChat = document.querySelector("#join-btn");
-// let joinFrom = document.querySelector(".join-chat-form");
 
-
-// // now profile work!!! Active user
-// var nameofUser = document.querySelector("#name");
-// let activeUser = document.querySelector("#active-user-status");
-// let SactiveUser = document.querySelector(".active-user-no");
-// let BactiveUser = document.querySelector(".active-user");
-
-// // now work on profile page
-
-// var ProfilePage = document.querySelector(".profile-container");
-// var ChatBoxContent = document.querySelector(".chat-box-content");
-// var templateProfile = document.querySelector(".profile-container-template");
 var whiteboardTemplate = document.querySelector(".whiteboard-template");
 var whiteboardTemplateBtn = document.querySelector(".whiteboard-template-btn");
 
@@ -42,7 +21,7 @@ canvas.addEventListener("mousedown", function (e) {
     isPenDown = true;
     redoPoints = [];
     let { top } = canvas.getBoundingClientRect();
-    let x = e.clientX-896;
+    let x = e.clientX-903;
     let y = e.clientY - top;
     // console.log(`X ${x} , Y ${y}`);
     ctx.beginPath();
@@ -61,7 +40,7 @@ canvas.addEventListener("mousemove", function(e){
     if (isPenDown) {
         // console.log(isPenDown);
         let { top } = canvas.getBoundingClientRect();
-        let x = e.clientX-896;
+        let x = e.clientX-903;
         let y = e.clientY - top;
         ctx.lineTo(x, y);
         ctx.stroke();
